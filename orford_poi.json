@@ -1,0 +1,106 @@
+{
+"type": "FeatureCollection",
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Refuge", "toponyme": "Le Castor", "capacite": 20, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": "Année", "affichage": "Oui", "id_poi": 1 }, "geometry": { "type": "Point", "coordinates": [ -72.217509629078933, 45.348927717262022 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Centre de découverte et de services", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": "Année", "affichage": "Oui", "id_poi": 2 }, "geometry": { "type": "Point", "coordinates": [ -72.195897515245917, 45.32959087221095 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Refuge", "toponyme": "Le Vieux-Camp", "capacite": 6, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": "Année", "affichage": "Oui", "id_poi": 3 }, "geometry": { "type": "Point", "coordinates": [ -72.198617868780403, 45.336632277663576 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Refuge", "toponyme": "La Sarracénie", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": "Année", "affichage": "Oui", "id_poi": 4 }, "geometry": { "type": "Point", "coordinates": [ -72.223678537544785, 45.380922242293408 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Refuge", "toponyme": "Le lodge Hors-Piste", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": "Année", "affichage": "Oui", "id_poi": 5 }, "geometry": { "type": "Point", "coordinates": [ -72.23680114330034, 45.387720651401438 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "3", "type": "Activité", "descr": "Abri", "toponyme": "Le Chalumeau", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": "Année", "affichage": "Oui", "id_poi": 6 }, "geometry": { "type": "Point", "coordinates": [ -72.242042047326123, 45.390307967772038 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Refuge", "toponyme": "La Cabane-à-Sucre", "capacite": 24, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": "Année", "affichage": "Oui", "id_poi": 7 }, "geometry": { "type": "Point", "coordinates": [ -72.212147868860583, 45.338164558180246 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "4", "type": "Accueil", "descr": "Accueil", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Lac-Fraser", "saison": "Été", "affichage": "Oui", "id_poi": 8 }, "geometry": { "type": "Point", "coordinates": [ -72.165000005676333, 45.383598464115295 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Chalet", "toponyme": "À-Tout-Vent", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": null, "affichage": "Non", "id_poi": 9 }, "geometry": { "type": "Point", "coordinates": [ -72.225815566136021, 45.392526139592654 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Chalet", "toponyme": "Éventail", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": null, "affichage": "Non", "id_poi": 10 }, "geometry": { "type": "Point", "coordinates": [ -72.224103119558109, 45.394307309266317 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Chalet", "toponyme": "Rafale", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": null, "affichage": "Non", "id_poi": 11 }, "geometry": { "type": "Point", "coordinates": [ -72.225053822060588, 45.395163234886233 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Refuge", "toponyme": "Havre", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": null, "affichage": "Non", "id_poi": 12 }, "geometry": { "type": "Point", "coordinates": [ -72.227708318679191, 45.395080931939191 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "4", "type": "Accueil", "descr": "Accueil", "toponyme": "Centre de Villégiature", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": "Année", "affichage": "Oui", "id_poi": 13 }, "geometry": { "type": "Point", "coordinates": [ -72.226025116433789, 45.394638518370172 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Chalet", "toponyme": "Poudrerie", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": null, "affichage": "Non", "id_poi": 14 }, "geometry": { "type": "Point", "coordinates": [ -72.225559984878231, 45.396509680346504 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Chalet", "toponyme": "Le Bowen", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Fraser", "saison": "Année", "affichage": "Oui", "id_poi": 15 }, "geometry": { "type": "Point", "coordinates": [ -72.23981034758404, 45.357572468722182 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "3", "type": "Activité", "descr": "Salle communautaire", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": "Année", "affichage": "Non", "id_poi": 16 }, "geometry": { "type": "Point", "coordinates": [ -72.239705135818383, 45.358315683896997 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "4", "type": "Accueil", "descr": "Poste de perception", "toponyme": "Guérite", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Lac-Fraser", "saison": "Été", "affichage": "Oui", "id_poi": 17 }, "geometry": { "type": "Point", "coordinates": [ -72.163940378862208, 45.385482296315899 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Abri-cuisine", "toponyme": "Abri cuisine A", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Lac-Fraser", "saison": null, "affichage": "Non", "id_poi": 18 }, "geometry": { "type": "Point", "coordinates": [ -72.172031325006841, 45.379649522652656 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Abri-cuisine", "toponyme": "Abri cuisine B", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Lac-Fraser", "saison": null, "affichage": "Non", "id_poi": 19 }, "geometry": { "type": "Point", "coordinates": [ -72.173977575587401, 45.379259438613623 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "5", "type": "Fonctionnement", "descr": "Bureau administratif", "toponyme": "Centre administratif", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": null, "affichage": "Oui", "id_poi": 20 }, "geometry": { "type": "Point", "coordinates": [ -72.18818650534125, 45.322760848918392 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "5", "type": "Fonctionnement", "descr": "Atelier", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": null, "affichage": "Non", "id_poi": 21 }, "geometry": { "type": "Point", "coordinates": [ -72.194242508510214, 45.325841932804401 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "5", "type": "Fonctionnement", "descr": "Entrepôt", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": null, "affichage": "Non", "id_poi": 22 }, "geometry": { "type": "Point", "coordinates": [ -72.194242508510214, 45.325841932804401 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "5", "type": "Fonctionnement", "descr": "Chalet", "toponyme": "Bâtiment pour travailleurs", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": null, "affichage": "Non", "id_poi": 23 }, "geometry": { "type": "Point", "coordinates": [ -72.180492666838006, 45.316044512960403 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "5", "type": "Fonctionnement", "descr": "Atelier", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Fraser", "saison": null, "affichage": "Non", "id_poi": 24 }, "geometry": { "type": "Point", "coordinates": [ -72.231094563185664, 45.359226894320976 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "5", "type": "Fonctionnement", "descr": "Bureau administratif", "toponyme": "Coup-de-Vent", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": null, "affichage": "Non", "id_poi": 25 }, "geometry": { "type": "Point", "coordinates": [ -72.225440709688925, 45.394429666365681 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "5", "type": "Fonctionnement", "descr": "Atelier", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": null, "affichage": "Non", "id_poi": 26 }, "geometry": { "type": "Point", "coordinates": [ -72.221943210311892, 45.397738068275203 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "5", "type": "Fonctionnement", "descr": "Atelier", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Lac-Fraser", "saison": null, "affichage": "Non", "id_poi": 27 }, "geometry": { "type": "Point", "coordinates": [ -72.168249251195078, 45.386740126854455 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Abri-cuisine", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Lac-Fraser", "saison": null, "affichage": "Non", "id_poi": 28 }, "geometry": { "type": "Point", "coordinates": [ -72.172087332077837, 45.373938003596358 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Abri-cuisine", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Lac-Fraser", "saison": null, "affichage": "Non", "id_poi": 29 }, "geometry": { "type": "Point", "coordinates": [ -72.171246981330313, 45.377556363312763 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Bloc sanitaire", "toponyme": "Bloc sanitaire 6", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": null, "affichage": "Non", "id_poi": 30 }, "geometry": { "type": "Point", "coordinates": [ -72.232477622937623, 45.362255102597842 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Bloc sanitaire", "toponyme": "Bloc sanitaire 1", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": null, "affichage": "Non", "id_poi": 31 }, "geometry": { "type": "Point", "coordinates": [ -72.23698890552663, 45.361130064291117 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Bloc sanitaire", "toponyme": "Bloc sanitaire 2", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": null, "affichage": "Non", "id_poi": 32 }, "geometry": { "type": "Point", "coordinates": [ -72.237953222382089, 45.3602673140619 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Bloc sanitaire", "toponyme": "Bloc sanitaire 3", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": null, "affichage": "Non", "id_poi": 33 }, "geometry": { "type": "Point", "coordinates": [ -72.239728245165765, 45.360187644535671 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Bloc sanitaire", "toponyme": "Bloc sanitaire 5", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": null, "affichage": "Non", "id_poi": 34 }, "geometry": { "type": "Point", "coordinates": [ -72.242566639009482, 45.362049256162059 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Bloc sanitaire", "toponyme": "Bloc sanitaire 4", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Fraser", "saison": null, "affichage": "Non", "id_poi": 35 }, "geometry": { "type": "Point", "coordinates": [ -72.241546642869238, 45.360898272344983 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Bloc sanitaire", "toponyme": "Bloc sanitaire 1", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Lac-Fraser", "saison": "Été", "affichage": "Non", "id_poi": 36 }, "geometry": { "type": "Point", "coordinates": [ -72.170669901453905, 45.380011102591887 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Bloc sanitaire", "toponyme": "Bloc sanitaire 2", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Lac-Fraser", "saison": null, "affichage": "Non", "id_poi": 37 }, "geometry": { "type": "Point", "coordinates": [ -72.173172171099466, 45.379373544051496 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Bloc sanitaire", "toponyme": "Bloc sanitaire 4", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Lac-Fraser", "saison": null, "affichage": "Non", "id_poi": 38 }, "geometry": { "type": "Point", "coordinates": [ -72.172113858055084, 45.373995335519631 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Bloc sanitaire", "toponyme": "Bloc sanitaire 3", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Lac-Fraser", "saison": null, "affichage": "Non", "id_poi": 39 }, "geometry": { "type": "Point", "coordinates": [ -72.171259009315492, 45.37747555154538 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Restaurant", "toponyme": "Pavillon des Baigneurs", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Lac-Fraser", "saison": "Été", "affichage": "Oui", "id_poi": 40 }, "geometry": { "type": "Point", "coordinates": [ -72.169059999218575, 45.390540000769079 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Bloc sanitaire", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Fraser", "saison": null, "affichage": "Oui", "id_poi": 41 }, "geometry": { "type": "Point", "coordinates": [ -72.239745638461997, 45.358348525873993 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Restaurant", "toponyme": "Casse-Croûte", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Fraser", "saison": null, "affichage": "Non", "id_poi": 42 }, "geometry": { "type": "Point", "coordinates": [ -72.235740679927432, 45.363110431591856 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Location embarcation", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": "Été", "affichage": "Non", "id_poi": 43 }, "geometry": { "type": "Point", "coordinates": [ -72.232844540093964, 45.362592456896579 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "2", "type": "Service", "descr": "Location embarcation", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": null, "affichage": "Non", "id_poi": 44 }, "geometry": { "type": "Point", "coordinates": [ -72.235998803020948, 45.363525613658446 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Auberge", "toponyme": "La petite Auberge", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": "Année", "affichage": "Oui", "id_poi": 45 }, "geometry": { "type": "Point", "coordinates": [ -72.221643686418375, 45.398264460180059 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Chalet", "toponyme": "D'Jouv", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur Jouvence", "saison": "Année", "affichage": "Oui", "id_poi": 46 }, "geometry": { "type": "Point", "coordinates": [ -72.225316313245344, 45.392415859292782 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "1", "type": "Hébergement", "descr": "Centre d'arts", "toponyme": "Centre d'Arts", "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": "Année", "affichage": "Oui", "id_poi": 47 }, "geometry": { "type": "Point", "coordinates": [ -72.182758986052121, 45.32434515084595 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "4", "type": "Accueil", "descr": "Guérite", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": "Été", "affichage": "Oui", "id_poi": 48 }, "geometry": { "type": "Point", "coordinates": [ -72.195764818195613, 45.328852020297688 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "4", "type": "Accueil", "descr": "Accueil", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Lac-Stukely", "saison": "Été", "affichage": "Oui", "id_poi": 49 }, "geometry": { "type": "Point", "coordinates": [ -72.186276927353319, 45.320123384374774 ] } }
+,
+{ "type": "Feature", "properties": { "no_type": "4", "type": "Accueil", "descr": "Accueil", "toponyme": null, "capacite": 0, "nbre_cham": 0, "secteur": "Secteur du Mont-Orford", "saison": "Été", "affichage": "Oui", "id_poi": 50 }, "geometry": { "type": "Point", "coordinates": [ -72.221272818388542, 45.317617632926705 ] } }
+
+]
+}

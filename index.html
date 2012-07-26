@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html style="width: 100%; height: 100%">
+<head>
+	<title>Demo Mont Orford</title>
+	<meta http-equiv="content-type" content="text/html;charset=ISO-8859-1" /> 
+        <script src="mapbox-wax/ext/modestmaps.min.js" type='text/javascript'></script>
+        <script src="mapbox-wax/dist/wax.mm.js" type='text/javascript'></script>
+	<script src="mapbox-wax/ext/leaflet.js" type='text/javascript'></script>
+	<script src="mapbox-wax/dist/wax.leaf.js" type='text/javascript'></script>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="d3/d3.v2.js"></script>
+        <script src="d3/plugins/d3-d3-plugins-92c7a64/fisheye/fisheye.js"></script>
+        <script src="dot-line-intersection.js"></script>
+
+        <link href='style.css' rel='stylesheet' type='text/css' />
+	<link href='mapbox-wax/ext/leaflet.css' rel='stylesheet' type='text/css' />
+
+        <script>	
+	jQuery(function(){
+	  var tilejson = {
+	      tilejson: '1.0.0',
+	      scheme: 'xyz',
+	      legend: '<a href="http://maps-cartes.ec.gc.ca/indicators-indicateurs/default.aspx?lang=fr"><img src="http://mapcoop.org/www-demo/demo/legendgasemi.png" alt="" width="150" height="150" /></a>', 
+              tiles: ['http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'],
+	  };
+	
+	  map = new L.Map('map', {zoomControl: false})
+	  .addLayer(new wax.leaf.connector(tilejson))
+	  .setView(new L.LatLng(45.35, -72.20), 13);
+
+          zoomControl = new L.Control.Zoom();
+          map.addControl(zoomControl);
+
+          popup = new L.Popup();
+
+          map._initPathRoot();
+          var svg = d3.select("#map").select("svg");
+          var sentiers = new L.GeoJSON(null);
+          svg_lines = null;
+          drawPOISpeed = 1500/200;
+          drawLineSpeed = 1500/200;
+
+          function clear() {
+              svg.selectAll("line").remove();
+              svg.selectAll(".poi").remove();
+              svg.select("#marker").remove();
+              svg.selectAll("path").attr("display", "none");
+              map.closePopup(); 
+          }
+
+          function disableZoom(){
+              map.touchZoom.disable(); 
+              map.doubleClickZoom.disable(); 
+              map.scrollWheelZoom.disable(); 
+              map.boxZoom.disable();                                                                                                                               
+              map.removeControl(zoomControl);
+          }
+
+          function enableZoom(){
+              map.touchZoom.enable(); 
+              map.doubleClickZoom.enable(); 
+              map.scrollWheelZoom.enable(); 
+              map.boxZoom.enable();                                                                                                                               
+              map.addControl(zoomControl);
+          }
+
+          /*------------------------------------------------------------------------
+          Function to draw points of interest as they are encountered along the path
+              nPOI: number of POI
+              n: index of the POI to draw
+              delay: time (in milliseconds) between the moment the path starts being 
+                  drawn and and the moment the POI is drawn
+              speed: speed (in milliseconds per pixel) at which the path is drawn 
+          ------------------------------------------------------------------------*/
+          function drawPOI(nPOI, n, delay, speed){
+              if(n < nPOI){
+	          poi.enter().append("g")
+                  .append("image").attr("class", "poi").attr("width", "20px").attr("height", "20px").attr("xlink:xlink:href", "eye.svg")
+                  .attr("opacity", 0)
+                  .attr("x",function(d) { return map.latLngToLayerPoint(d.arrPOI[n].LatLng).x - 10 })
+	          .attr("y",function(d) { return map.latLngToLayerPoint(d.arrPOI[n].LatLng).y - 10})
+                  .on("click", function(d,i) {
+                      map.closePopup();
+                      setTimeout(function(){map.openPopup(popup);}, 0);
+                      var popupContent = "Type : " + d.arrPOI[n].properties.type + "<br/>" + "Description : " + d.arrPOI[n].properties.descr + "<br/>" + "Nom : " + d.arrPOI[n].properties.toponyme + "<br/>" + "Secteur : " + d.arrPOI[n].properties.secteur + "<br/>" + "Saison : " + d.arrPOI[n].properties.saison + "<br/>" + "Affichage : " + d.arrPOI[n].properties.affichage + "<br/>" + "ID : " + d.arrPOI[n].properties.id_poi;
+                      popup.setLatLng(d.arrPOI[n].LatLng);
+                      popup.setContent(popupContent);
+
+                      map.openPopup(popup);
+                  })
+                  .transition()
+                  .duration(0)
+                  .attr("opacity", 1)
+                  .ease("linear")
+                  .delay(function(d){
+                      return d.distPOI[n] * speed - delay;
+                  })
+                  .each("end", function(d){
+                      setTimeout(function(){map.openPopup(popup);}, 0);
+                      var popupContent = "Type : " + d.arrPOI[n].properties.type + "<br/>" + "Description : " + d.arrPOI[n].properties.descr + "<br/>" + "Nom : " + d.arrPOI[n].properties.toponyme + "<br/>" + "Secteur : " + d.arrPOI[n].properties.secteur + "<br/>" + "Saison : " + d.arrPOI[n].properties.saison + "<br/>" + "Affichage : " + d.arrPOI[n].properties.affichage + "<br/>" + "ID : " + d.arrPOI[n].properties.id_poi;
+                      popup.setLatLng(d.arrPOI[n].LatLng);
+                      popup.setContent(popupContent);
+
+                      map.openPopup(popup);
+                      drawPOI(nPOI, n + 1, d.distPOI[n] * speed, speed)
+                  })
+              }
+          }
+
+          /*------------------------------------------------------------------------
+          Function to draw lines composing the path
+              d: path data
+              n: index of the line to draw
+              speed: speed (in milliseconds per pixel) at which the path is drawn 
+          ------------------------------------------------------------------------*/
+          function drawLine(d, n, speed){
+              if(n < d.geometry.coordinates.length - 1){
+                  svg_lines.enter().append("g")
+                  .append("line")
+                  .attr("stroke-width", 2)
+                  .attr('x1', function(d) { 
+                      d.LatLng = new L.LatLng(d.geometry.coordinates[n][1],d.geometry.coordinates[n][0]);
+                      return map.latLngToLayerPoint(d.LatLng).x; 
+                  })
+                  .attr('y1', function(d) { return map.latLngToLayerPoint(d.LatLng).y; })
+                  .attr('x2', function(d) { return map.latLngToLayerPoint(d.LatLng).x; })
+                  .attr('y2', function(d) { return map.latLngToLayerPoint(d.LatLng).y; })
+                  .transition()
+                  .duration(function(d){
+                      var p1 = d.LatLng;
+                      var p2 = new L.LatLng(d.geometry.coordinates[n + 1][1],d.geometry.coordinates[n + 1][0]);
+                      var dist = Math.sqrt(Math.pow(map.latLngToLayerPoint(p2).x - map.latLngToLayerPoint(p1).x, 2) + Math.pow(map.latLngToLayerPoint(p2).y - map.latLngToLayerPoint(p1).y, 2));
+                      return dist * speed;
+                  })
+                  .attr('x2', function(d) { return map.latLngToLayerPoint(new L.LatLng(d.geometry.coordinates[n + 1][1],d.geometry.coordinates[n + 1][0])).x; })
+                  .attr('y2', function(d) { return map.latLngToLayerPoint(new L.LatLng(d.geometry.coordinates[n + 1][1],d.geometry.coordinates[n + 1][0])).y; })
+                  .ease("linear")
+                  .attr("stroke", "darkgreen")
+                  //.attr("stroke-dasharray", "2, 2")
+                  .each("end", function(d){
+                      drawLine(d, n + 1, speed)
+                  })
+
+                  marker.attr("id", "marker")
+                  .attr("x", function(d){
+                      d.LatLng = new L.LatLng(d.geometry.coordinates[n][1],d.geometry.coordinates[n][0]);
+                      return map.latLngToLayerPoint(d.LatLng).x - 10
+                  })
+                  .attr("y", function(d){
+                      return map.latLngToLayerPoint(d.LatLng).y - 10
+                  })
+                  .transition()
+                  .duration(function(d){
+                      var p1 = d.LatLng;
+                      var p2 = new L.LatLng(d.geometry.coordinates[n + 1][1],d.geometry.coordinates[n + 1][0]);
+                      var dist = Math.sqrt(Math.pow(map.latLngToLayerPoint(p2).x - map.latLngToLayerPoint(p1).x, 2) + Math.pow(map.latLngToLayerPoint(p2).y - map.latLngToLayerPoint(p1).y, 2));
+                      return dist * speed;
+                  })
+                  .attr("x", function(d) {
+                      d.LatLng = new L.LatLng(d.geometry.coordinates[n + 1][1],d.geometry.coordinates[n + 1][0]); 
+                      return map.latLngToLayerPoint(d.LatLng).x - 10;
+                  })
+                  .attr("y", function(d) { 
+                      return map.latLngToLayerPoint(d.LatLng).y - 10; 
+                  })
+                  .ease("linear")
+              } else {   
+                  $("#path" + d.properties.id).attr("display", "block");
+                  $("line").remove();
+                  svg_lines = null;
+                  enableZoom();
+                  //map.closePopup();
+              }  
+          } 
+
+          /*------------------------------------------------------------------------
+          Data is read here and distance from the beginning of each path to the
+          corresponding POIs is calculated 
+          ------------------------------------------------------------------------*/
+          $.getJSON("orford.json", function(geojsonFeatures){
+              geojsonFeatures.features.forEach(function(d){
+                  $("#trails").append(new Option(d.properties.toponyme1, d.properties.id, true, true));
+                  if(d.properties.poi != ''){
+                      var reg=new RegExp("[,]+", "g");
+                      d.idPOI = d.properties.poi.split(reg);
+                  }
+                  else{
+                      d.idPOI = []
+                  }
+                  d.arrPOI = [];
+                  d.distPOI = [0];
+                  d.linePOI = [];
+              })
+
+              $("#trails").prop("selectedIndex", 0);
+                   
+              d3.json("orford_poi.json", function(collection) {
+	          collection.features.forEach(function(d) {
+                      d.LatLng = new L.LatLng(d.geometry.coordinates[1],d.geometry.coordinates[0]);
+                      geojsonFeatures.features.forEach(function(feat){
+                          if(feat.idPOI.indexOf(d.properties.id_poi.toString()) != -1) {
+                              var p1 =  map.latLngToLayerPoint(new L.LatLng(feat.geometry.coordinates[0][1],feat.geometry.coordinates[0][0]));
+                              var p3 =  map.latLngToLayerPoint(d.LatLng);
+
+                              var dist = [0];
+
+                              var minDist = Math.sqrt(Math.pow(p1.x - p3.x, 2) + Math.pow(p1.y - p3.y, 2));
+                              var minDistIndex = 0;
+                              var partialDist = 0;
+
+                              for(k = 0; k < feat.geometry.coordinates.length; k++){
+                                  if(k != feat.geometry.coordinates.length - 1){
+                                      var p1 =  map.latLngToLayerPoint(new L.LatLng(feat.geometry.coordinates[k][1],feat.geometry.coordinates[k][0]));
+                                      var p2 =  map.latLngToLayerPoint(new L.LatLng(feat.geometry.coordinates[k + 1][1],feat.geometry.coordinates[k + 1][0]));
+
+                                      var dist12 = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
+                                      dist.push(dist[k] + dist12);
+
+                                      var intersect = dotLineIntersection(p3.x, p3.y, p1.x, p1.y, p2.x, p2.y);
+                                      var isOnSegment = (p3.x - p1.x)/(p2.x - p1.x);
+                                      if(isOnSegment >= 0 && isOnSegment <= 1){
+                                          var dd = Math.sqrt(Math.pow(intersect.x - p3.x, 2) + Math.pow(intersect.y - p3.y, 2));
+                                          if(dd < minDist){
+                                              minDistIndex = k;
+                                              minDist = dd;
+                                              partialDist = Math.sqrt(Math.pow(intersect.x - p1.x, 2) + Math.pow(intersect.y - p1.y, 2));
+                                          }
+                                      }
+                                  } else if (k == feat.geometry.coordinates.length - 1){ 
+                                      var p1 =  map.latLngToLayerPoint(new L.LatLng(feat.geometry.coordinates[k][1],feat.geometry.coordinates[k][0]));
+                                      dd = Math.sqrt(Math.pow(p1.x - p3.x, 2) + Math.pow(p1.y - p3.y, 2));
+                                      if(dd < minDist){
+                                           minDistIndex = k;
+                                           minDist = dd;
+                                           partialDist = 0;
+                                      }
+                                  }
+                              }
+                              /*------------------------------------------------------------------------
+                              POIs are sorted according to their distance from the beginning of the path
+                              ----------------------------------------------------------------------*/
+                              for(n = 0; n < feat.distPOI.length; n++){
+                                  if(feat.distPOI[n] > dist[minDistIndex] + partialDist){
+                                      feat.distPOI.splice(n, 0, dist[minDistIndex] + partialDist);
+                                      feat.arrPOI.splice(n, 0, d);
+                                      break;
+                                  } else if(n == feat.distPOI.length - 1 && feat.distPOI[n] <= dist[minDistIndex] + partialDist){
+                                      feat.arrPOI.push(d);           
+                                      feat.distPOI.push(dist[minDistIndex] + partialDist);
+                                      break;
+                                  }
+                              }
+                          } 
+                      })
+	          })
+
+                  geojsonFeatures.features.forEach(function(d){                                                                        
+                      d.distPOI.splice(0,1); 
+                  })
+	      })
+                   
+              sentiers.addGeoJSON(geojsonFeatures);
+              map.addLayer(sentiers);
+
+              svg_sentiers = svg.selectAll("path")
+              .data(geojsonFeatures.features)
+              .attr("class", "path")
+              .attr("display", "none")
+              .attr("id", function(d){
+                  return "path" + d.properties.id;
+              })
+          });
+           
+          $("#trails").bind("change", function(){
+              var v = $(this).val();
+              if(svg_lines == null){
+                  clear();
+                  disableZoom();
+                  d3.select("#path" + v)
+                  .transition()
+                  .duration(0)
+                  .each("end", function(d){
+                      map.panTo(new L.LatLng(d.geometry.coordinates[0][1],d.geometry.coordinates[0][0]));
+                  })
+                  .transition()        
+                  .duration(500)
+                  .each("end", function(d){
+                      svg_lines = svg.selectAll("line").data([d])
+                      marker = svg_lines.enter().append("g").append("image").attr("class", "marker").attr("width", "20px").attr("height", "20px").attr("xlink:xlink:href", "pitch20.svg");
+                      poi = svg.selectAll(".poi").data([{"arrPOI": d.arrPOI, "distPOI" : d.distPOI}]);    
+                      drawLine(d, 0, drawLineSpeed);
+                      drawPOI(d.arrPOI.length, 0, 0, drawPOISpeed);
+                  })
+              }    
+          })                                                                                    
+               
+          function update() {
+              try{
+                  d3.selectAll(".poi")
+                  .data(poi.data()[0].arrPOI)
+                  .attr("x", function(d, i){
+                      return map.latLngToLayerPoint(d.LatLng).x - 10;
+                  })
+                  .attr("y", function(d, i){
+                      return map.latLngToLayerPoint(d.LatLng).y - 10;
+                  })
+                  .on("click", function(d,i) {
+                      setTimeout(function(){map.openPopup(popup);}, 0);
+                      var popupContent = "Type : " + d.arrPOI[n].properties.type + "<br/>" + "Description : " + d.arrPOI[n].properties.descr + "<br/>" + "Nom : " + d.arrPOI[n].properties.toponyme + "<br/>" + "Secteur : " + d.arrPOI[n].properties.secteur + "<br/>" + "Saison : " + d.arrPOI[n].properties.saison + "<br/>" + "Affichage : " + d.arrPOI[n].properties.affichage + "<br/>" + "ID : " + d.arrPOI[n].properties.id_poi;
+                      popup.setLatLng(d.LatLng);
+                      popup.setContent(popupContent);
+
+                      map.openPopup(popup);
+                  })
+              } catch(e){}
+       
+              try{
+                  d3.select("#marker")
+                  .data([marker.data()[0]])
+                  .attr("x", function(d){
+                      return map.latLngToLayerPoint(d.LatLng).x - 10;
+                  })
+                  .attr("y", function(d){
+                      return map.latLngToLayerPoint(d.LatLng).y - 10;
+                  })
+              } catch(e){}
+	  }
+
+          map.on("viewreset", function(){
+              update();
+          });
+
+          map.on("zoomstart", function(){
+              zoomIni = map.getZoom();
+          });
+
+          map.on("zoomend", function(){
+              if(map.getZoom() > zoomIni){
+                  drawLineSpeed = drawLineSpeed / 2;
+              }else if (map.getZoom() < zoomIni){
+                  drawLineSpeed = drawLineSpeed * 2;
+              }        
+          })
+        });
+        </script>
+</head>
+<body style="width: 100%; height: 100%">
+        <select name="trails" id="trails"></select>
+	<div id="map" style="width: 100%; height: 100%"/>
+</body>
+</html>
